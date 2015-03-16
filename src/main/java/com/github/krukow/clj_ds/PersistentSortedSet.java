@@ -2,7 +2,7 @@ package com.github.krukow.clj_ds;
 
 import com.github.krukow.clj_lang.Sorted;
 
-public interface PersistentSortedSet<E> extends PersistentSet<E>, Sorted<E> /*, SortedSet<E> */ {
+public interface PersistentSortedSet<E> extends PersistentSet<E>, Sorted<E,E> /*, SortedSet<E> */ {
 
 	PersistentSortedSet<E> zero();
 	

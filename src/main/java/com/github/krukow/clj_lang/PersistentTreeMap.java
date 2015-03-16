@@ -12,12 +12,12 @@ a *   Copyright (c) Rich Hickey. All rights reserved.
 
 package com.github.krukow.clj_lang;
 
+import com.github.krukow.clj_ds.PersistentSortedMap;
+
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Stack;
-
-import com.github.krukow.clj_ds.PersistentSortedMap;
 
 /**
  * Persistent Red Black Tree
@@ -27,7 +27,7 @@ import com.github.krukow.clj_ds.PersistentSortedMap;
  * See Okasaki, Kahrs, Larsen et al
  */
 
-public class PersistentTreeMap<K,V> extends APersistentMap<K,V> implements IObj, Reversible<Map.Entry<K, V>>, Sorted<K>, PersistentSortedMap<K, V>{
+public class PersistentTreeMap<K,V> extends APersistentMap<K,V> implements IObj, Reversible<Map.Entry<K, V>>, Sorted<K, Map.Entry<K,V>>, PersistentSortedMap<K, V>{
 
 public final Comparator<K> comp;
 public final Node tree;
@@ -159,13 +159,14 @@ public Object entryKey(Object entry){
 	return ((IMapEntry) entry).key();
 }
 
-public ISeq seq(boolean ascending){
+public ISeq<Map.Entry<K,V>> seq(boolean ascending){
 	if(_count > 0)
 		return Seq.create(tree, ascending, _count);
 	return null;
 }
 
-public ISeq seqFrom(K key, boolean ascending){
+
+public ISeq<Map.Entry<K,V>> seqFrom(K key, boolean ascending){
 	if(_count > 0)
 		{
 		ISeq stack = null;
@@ -911,22 +912,22 @@ static class ValIterator<T> implements Iterator<T>{
 	}
 }
 
-	@Override
+
 	public PersistentSortedMap<K, V> zero() {
 		return (PersistentSortedMap<K, V>) empty();
 	}
 	
-	@Override
+
 	public PersistentSortedMap<K, V> plus(K key, V val) {
 		return assoc(key, val);
 	}
 	
-	@Override
+
 	public PersistentSortedMap<K, V> plusEx(K key, V val) {
 		return assocEx(key, val);
 	}
 	
-	@Override
+
 	public PersistentSortedMap<K, V> minus(K key) {
 		return without(key);
 	}

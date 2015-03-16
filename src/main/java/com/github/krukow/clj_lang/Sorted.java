@@ -14,12 +14,11 @@ package com.github.krukow.clj_lang;
 
 import java.util.Comparator;
 
-public interface Sorted<K>{
+public interface Sorted<K,E>{
 Comparator<K> comparator();
 
 Object entryKey(Object entry);
 
-ISeq<K> seq(boolean ascending);
-
-ISeq<K> seqFrom(K key, boolean ascending);
+ISeq<E> seq(boolean ascending);
+ISeq<E> seqFrom(K key, boolean ascending);
 }

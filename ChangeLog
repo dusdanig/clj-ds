@@ -1,0 +1,6 @@
+
+16-03-2015 -- Daan Oosterveld
+
+Added another type argument to Sorted to specify the result. Currently the
+seqFrom is returning map entries for the persistent tree map. The Sorted
+interface is extended to reflect this type change.

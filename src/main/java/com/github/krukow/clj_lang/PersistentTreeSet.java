@@ -17,7 +17,7 @@ import java.util.Comparator;
 import com.github.krukow.clj_ds.PersistentSortedSet;
 import com.github.krukow.clj_ds.TransientCollection;
 
-public class PersistentTreeSet<T> extends APersistentSet<T> implements IObj, Reversible<T>, Sorted<T>, PersistentSortedSet<T>{
+public class PersistentTreeSet<T> extends APersistentSet<T> implements IObj, Reversible<T>, Sorted<T,T>, PersistentSortedSet<T>{
 static public final PersistentTreeSet EMPTY = new PersistentTreeSet(null, PersistentTreeMap.EMPTY);
 final IPersistentMap _meta;
 
@@ -70,7 +70,7 @@ public PersistentTreeSet<T> withMeta(IPersistentMap meta){
 }
 
 public Comparator<T> comparator(){
-	return ((Sorted<T>)impl).comparator();
+	return ((Sorted<T,T>)impl).comparator();
 }
 
 public Object entryKey(Object entry){
@@ -91,22 +91,22 @@ public IPersistentMap meta(){
 	return _meta;
 }
 	
-	@Override
+
 	public PersistentSortedSet<T> zero() {
 		return empty();
 	}
 	
-	@Override
+
 	public PersistentSortedSet<T> plus(T o) {
 		return cons(o);
 	}
 	
-	@Override
+
 	public PersistentSortedSet<T> minus(T key) {
 		return disjoin(key);
 	}
 	
-	@Override
+
 	public TransientCollection<T> asTransient() {
 		throw new UnsupportedOperationException();
 	}
