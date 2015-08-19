@@ -2,3 +2,5 @@ target
 .idea
 settings.xml
 **/*.iml
+build
+.gradle
