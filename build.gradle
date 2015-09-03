@@ -1,5 +1,7 @@
 
+
 apply plugin: 'java'
+apply plugin: 'nebula.maven-publishing'
 
 repositories {
              mavenCentral();
@@ -9,3 +11,5 @@ repositories {
 dependencies {
 	testCompile "junit:junit:4.12"
 }
+
+group = "com.github.krukow"
